@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bikers.com | Ride Together</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0b0b;
+            color: white;
+        }
+
+        /* NAVBAR */
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: #050505;
+            border-bottom: 1px solid #222;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ff3c00;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff3c00;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .login-btn {
+            background: #ff3c00;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 5px;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+
+            padding: 120px 10%;
+
+            background: linear-gradient(
+                135deg,
+                #111,
+                #050505
+            );
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .small-title {
+            color: #ff3c00;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 70px;
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #ff3c00;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #cccccc;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            padding: 14px 25px;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        .primary-btn {
+            background: #ff3c00;
+            color: white;
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .primary-btn:hover {
+            background: #ff5a25;
+        }
+
+        .secondary-btn:hover {
+            background: white;
+            color: black;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 90px 8%;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 50px;
+        }
+
+        /* FEATURES */
+
+        .features {
+            background: #111;
+        }
+
+        .feature-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border: 1px solid #ff3c00;
+        }
+
+        .icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* BIKES */
+
+        .bike-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .bike-card {
+            background: #171717;
+            padding: 25px;
+            text-align: center;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .bike-card:hover {
+            transform: translateY(-8px);
+            border: 1px solid #ff3c00;
+        }
+
+        .bike-icon {
+            font-size: 80px;
+            padding: 30px;
+            background: #222;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .bike-card p {
+            color: #aaa;
+            margin: 10px 0 20px;
+        }
+
+        .bike-card button,
+        .ride-card button {
+            background: #ff3c00;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 5px;
+        }
+
+        .bike-card button:hover,
+        .ride-card button:hover {
+            background: #ff5a25;
+        }
+
+        /* RIDES */
+
+        .rides-section {
+            background: #111;
+        }
+
+        .ride-card {
+            max-width: 900px;
+            margin: 20px auto;
+
+            padding: 25px;
+
+            background: #1c1c1c;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-radius: 8px;
+
+            border-left: 4px solid #ff3c00;
+        }
+
+        .ride-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .ride-card p {
+            color: #aaa;
+            margin-top: 8px;
+        }
+
+        /* COMMUNITY */
+
+        .community {
+            text-align: center;
+            background: #151515;
+        }
+
+        .community h2 {
+            margin-bottom: 20px;
+        }
+
+        .community p {
+            color: #ccc;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        /* MODAL */
+
+        .modal {
+            display: none;
+
+            position: fixed;
+            z-index: 2000;
+
+            left: 0;
+            top: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.85);
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+
+            width: 350px;
+
+            margin: 10% auto;
+
+            padding: 30px;
+
+            border-radius: 10px;
+
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 25px;
+            font-size: 25px;
+        }
+
+        .modal-content input {
+            width: 100%;
+
+            padding: 13px;
+
+            margin-bottom: 15px;
+
+            background: #222;
+
+            border: 1px solid #444;
+
+            color: white;
+
+            border-radius: 5px;
+        }
+
+        .modal-content button {
+            width: 100%;
+        }
+
+        .close {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close:hover {
+            color: white;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #050505;
+        }
+
+        footer h3 {
+            color: #ff3c00;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: #888;
+            margin: 8px;
+        }
+
+        .copyright {
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .feature-container,
+            .bike-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero h1 {
+                font-size: 50px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .feature-container,
+            .bike-container {
+                grid-template-columns: 1fr;
+            }
+
+            .ride-card {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+
+            .hero {
+                padding: 120px 30px;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                🏍️ BIKERS<span>.COM</span>
+            </div>
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+
+                <li>
+                    <a href="#rides">Rides</a>
+                </li>
+
+                <li>
+                    <a href="#bikes">Bikes</a>
+                </li>
+
+                <li>
+                    <a href="#events">Events</a>
+                </li>
+
+                <li>
+                    <a href="#community">Community</a>
+                </li>
+
+            </ul>
+
+            <button
+                class="login-btn"
+                onclick="openLogin()">
+
+                Login
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <p class="small-title">
+                WELCOME TO THE RIDER COMMUNITY
+            </p>
+
+            <h1>
+                RIDE MORE.
+                <br>
+
+                <span>LIVE FREE.</span>
+            </h1>
+
+            <p>
+                Connect with bikers, discover amazing routes,
+                join group rides and explore the world on two wheels.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button
+                    onclick="findRide()"
+                    class="primary-btn">
+
+                    Find a Ride
+
+                </button>
+
+                <button
+                    onclick="joinCommunity()"
+                    class="secondary-btn">
+
+                    Join Community
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features">
+
+        <h2>
+            Everything for Riders
+        </h2>
+
+        <div class="feature-container">
+
+            <div class="feature-card">
+
+                <div class="icon">
+                    🏍️
+                </div>
+
+                <h3>
+                    Find Riders
+                </h3>
+
+                <p>
+                    Meet riders near you and build
+                    your riding community.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="icon">
+                    🗺️
+                </div>
+
+                <h3>
+                    Discover Routes
+                </h3>
+
+                <p>
+                    Explore beautiful routes and plan
+                    your next adventure.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="icon">
+                    📅
+                </div>
+
+                <h3>
+                    Join Events
+                </h3>
+
+                <p>
+                    Find bike meets, rallies and
+                    group rides.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="icon">
+                    🔧
+                </div>
+
+                <h3>
+                    Bike Services
+                </h3>
+
+                <p>
+                    Discover nearby mechanics,
+                    workshops and services.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BIKES -->
+
+    <section id="bikes">
+
+        <h2>
+            Popular Bikes
+        </h2>
+
+        <div class="bike-container">
+
+            <div class="bike-card">
+
+                <div class="bike-icon">
+                    🏍️
+                </div>
+
+                <h3>
+                    Royal Enfield
+                </h3>
+
+                <p>
+                    Classic & Touring
+                </p>
+
+                <button
+                    onclick="showBike('Royal Enfield')">
+
+                    View Bike
+
+                </button>
+
+            </div>
+
+
+            <div class="bike-card">
+
+                <div class="bike-icon">
+                    🏍️
+                </div>
+
+                <h3>
+                    KTM Duke
+                </h3>
+
+                <p>
+                    Street Performance
+                </p>
+
+                <button
+                    onclick="showBike('KTM Duke')">
+
+                    View Bike
+
+                </button>
+
+            </div>
+
+
+            <div class="bike-card">
+
+                <div class="bike-icon">
+                    🏍️
+                </div>
+
+                <h3>
+                    BMW Motorrad
+                </h3>
+
+                <p>
+                    Adventure Touring
+                </p>
+
+                <button
+                    onclick="showBike('BMW Motorrad')">
+
+                    View Bike
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RIDES -->
+
+    <section id="rides" class="rides-section">
+
+        <h2>
+            Upcoming Rides
+        </h2>
+
+
+        <div class="ride-card">
+
+            <div>
+
+                <h3>
+                    🌄 Chennai Weekend Ride
+                </h3>
+
+                <p>
+                    📍 Chennai → Mahabalipuram
+                </p>
+
+                <p>
+                    📅 Sunday | 6:00 AM
+                </p>
+
+            </div>
+
+            <button onclick="joinRide()">
+                Join Ride
+            </button>
+
+        </div>
+
+
+        <div class="ride-card">
+
+            <div>
+
+                <h3>
+                    🏔️ Mountain Adventure
+                </h3>
+
+                <p>
+                    📍 Bangalore → Ooty
+                </p>
+
+                <p>
+                    📅 24 August | 5:30 AM
+                </p>
+
+            </div>
+
+            <button onclick="joinRide()">
+                Join Ride
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMMUNITY -->
+
+    <section
+        id="community"
+        class="community">
+
+        <h2>
+            Don't Ride Alone.
+        </h2>
+
+        <p>
+            Find your tribe. Share your journey.
+            Create unforgettable memories.
+        </p>
+
+        <button
+            onclick="joinCommunity()"
+            class="primary-btn">
+
+            Join Bikers.com
+
+        </button>
+
+    </section>
+
+
+    <!-- LOGIN MODAL -->
+
+    <div
+        id="loginModal"
+        class="modal">
+
+        <div class="modal-content">
+
+            <span
+                class="close"
+                onclick="closeLogin()">
+
+                &times;
+
+            </span>
+
+            <h2>
+                Welcome Back Rider 🏍️
+            </h2>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Email">
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password">
+
+            <button
+                onclick="login()"
+                class="primary-btn">
+
+                Login
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>
+            🏍️ BIKERS.COM
+        </h3>
+
+        <p>
+            Ride together. Explore together.
+            Live the ride.
+        </p>
+
+        <p class="copyright">
+            © 2026 Bikers.com. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function openLogin() {
+
+            document.getElementById("loginModal").style.display =
+                "block";
+
+        }
+
+
+        function closeLogin() {
+
+            document.getElementById("loginModal").style.display =
+                "none";
+
+        }
+
+
+        function login() {
+
+            const email =
+                document.getElementById("email").value;
+
+            const password =
+                document.getElementById("password").value;
+
+
+            if (email === "" || password === "") {
+
+                alert(
+                    "Please enter email and password."
+                );
+
+                return;
+
+            }
+
+
+            alert(
+                "Login successful! Welcome rider 🏍️"
+            );
+
+
+            closeLogin();
+
+        }
+
+
+        function findRide() {
+
+            document
+                .getElementById("rides")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
+
+
+        function joinCommunity() {
+
+            alert(
+                "Welcome to Bikers.com! 🏍️\n\n" +
+                "Community registration will be available soon."
+            );
+
+        }
+
+
+        function joinRide() {
+
+            alert(
+                "You have joined the ride! 🏍️\n\n" +
+                "Ride details will be sent to your account."
+            );
+
+        }
+
+
+        function showBike(bikeName) {
+
+            alert(
+                "🏍️ " + bikeName +
+                "\n\nMore bike details coming soon!"
+            );
+
+        }
+
+
+        window.onclick = function(event) {
+
+            const modal =
+                document.getElementById("loginModal");
+
+            if (event.target === modal) {
+
+                modal.style.display = "none";
+
+            }
+
+        };
+
+    </script>
+
+</body>
+</html>
